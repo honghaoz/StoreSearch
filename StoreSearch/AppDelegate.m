@@ -23,8 +23,14 @@
     self.searchViewController = [[SearchViewController alloc]initWithNibName:@"SearchViewController" bundle:nil];
     self.window.rootViewController = self.searchViewController;
     [self.window makeKeyAndVisible];
+//    [self customizeAppearance];
     return YES;
 }
+
+//- (void)customizeAppearance {
+//    UIImage *barImage = [UIImage imageNamed:@"BarTexture"];
+//    [[UISearchBar appearance] setBackgroundImage:barImage];
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
