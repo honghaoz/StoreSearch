@@ -22,6 +22,8 @@
 		1BB34F3718A213860082F53A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB34F1B18A213850082F53A /* CoreData.framework */; };
 		1BB34F3F18A213860082F53A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BB34F3D18A213860082F53A /* InfoPlist.strings */; };
 		1BB34F4118A213860082F53A /* StoreSearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB34F4018A213860082F53A /* StoreSearchTests.m */; };
+		1BB34F4D18A213CC0082F53A /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB34F4B18A213CC0082F53A /* SearchViewController.m */; };
+		1BB34F4E18A213CC0082F53A /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB34F4C18A213CC0082F53A /* SearchViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,9 @@
 		1BB34F3C18A213860082F53A /* StoreSearchTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StoreSearchTests-Info.plist"; sourceTree = "<group>"; };
 		1BB34F3E18A213860082F53A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1BB34F4018A213860082F53A /* StoreSearchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreSearchTests.m; sourceTree = "<group>"; };
+		1BB34F4A18A213CC0082F53A /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = ViewControllers/SearchViewController.h; sourceTree = "<group>"; };
+		1BB34F4B18A213CC0082F53A /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = ViewControllers/SearchViewController.m; sourceTree = "<group>"; };
+		1BB34F4C18A213CC0082F53A /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchViewController.xib; path = ViewControllers/SearchViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +122,9 @@
 			children = (
 				1BB34F2618A213850082F53A /* AppDelegate.h */,
 				1BB34F2718A213850082F53A /* AppDelegate.m */,
+				1BB34F4A18A213CC0082F53A /* SearchViewController.h */,
+				1BB34F4B18A213CC0082F53A /* SearchViewController.m */,
+				1BB34F4C18A213CC0082F53A /* SearchViewController.xib */,
 				1BB34F2C18A213850082F53A /* Images.xcassets */,
 				1BB34F2918A213850082F53A /* StoreSearch.xcdatamodeld */,
 				1BB34F1E18A213850082F53A /* Supporting Files */,
@@ -229,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BB34F2218A213850082F53A /* InfoPlist.strings in Resources */,
+				1BB34F4E18A213CC0082F53A /* SearchViewController.xib in Resources */,
 				1BB34F2D18A213850082F53A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +259,7 @@
 			files = (
 				1BB34F2818A213850082F53A /* AppDelegate.m in Sources */,
 				1BB34F2418A213850082F53A /* main.m in Sources */,
+				1BB34F4D18A213CC0082F53A /* SearchViewController.m in Sources */,
 				1BB34F2B18A213850082F53A /* StoreSearch.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

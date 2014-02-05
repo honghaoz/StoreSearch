@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SearchViewController.h"
 
 @implementation AppDelegate
 
@@ -19,6 +20,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    self.searchViewController = [[SearchViewController alloc]initWithNibName:@"SearchViewController" bundle:nil];
+    self.window.rootViewController = self.searchViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
