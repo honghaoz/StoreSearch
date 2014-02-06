@@ -25,6 +25,7 @@
 		1B17E89C18A2DF6B00EA3716 /* TableCellGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B17E88D18A2DF6B00EA3716 /* TableCellGradient.png */; };
 		1B17E89E18A2E0CC00EA3716 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B17E89D18A2E0CC00EA3716 /* SearchResultCell.xib */; };
 		1B17E8A118A2E8B200EA3716 /* SearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B17E8A018A2E8B200EA3716 /* SearchResultCell.m */; };
+		1B8695CE18A4147600073D52 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8695CD18A4147600073D52 /* GradientView.m */; };
 		1BB34F1618A213850082F53A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB34F1518A213850082F53A /* Foundation.framework */; };
 		1BB34F1818A213850082F53A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB34F1718A213850082F53A /* CoreGraphics.framework */; };
 		1BB34F1A18A213850082F53A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB34F1918A213850082F53A /* UIKit.framework */; };
@@ -91,6 +92,8 @@
 		1B17E89D18A2E0CC00EA3716 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchResultCell.xib; path = ViewControllers/SearchResultCell.xib; sourceTree = "<group>"; };
 		1B17E89F18A2E8B200EA3716 /* SearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultCell.h; sourceTree = "<group>"; };
 		1B17E8A018A2E8B200EA3716 /* SearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultCell.m; sourceTree = "<group>"; };
+		1B8695CC18A4147600073D52 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
+		1B8695CD18A4147600073D52 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		1BB34F1218A213850082F53A /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BB34F1518A213850082F53A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1BB34F1718A213850082F53A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -240,6 +243,8 @@
 				1BEAA85718A358A3003F755E /* DetailViewController.h */,
 				1BEAA85818A358A3003F755E /* DetailViewController.m */,
 				1BEAA85918A358A3003F755E /* DetailViewController.xib */,
+				1B8695CC18A4147600073D52 /* GradientView.h */,
+				1B8695CD18A4147600073D52 /* GradientView.m */,
 				1B17E89F18A2E8B200EA3716 /* SearchResultCell.h */,
 				1B17E8A018A2E8B200EA3716 /* SearchResultCell.m */,
 				1B17E89D18A2E0CC00EA3716 /* SearchResultCell.xib */,
@@ -448,6 +453,7 @@
 				1BEAA84F18A3237C003F755E /* AFImageCache.m in Sources */,
 				1BEAA85018A3237C003F755E /* AFImageRequestOperation.m in Sources */,
 				1BEAA85218A3237C003F755E /* AFNetworkActivityIndicatorManager.m in Sources */,
+				1B8695CE18A4147600073D52 /* GradientView.m in Sources */,
 				1BEAA85618A3237C003F755E /* UIImageView+AFNetworking.m in Sources */,
 				1BB34F4D18A213CC0082F53A /* SearchViewController.m in Sources */,
 				1BEAA84D18A3237C003F755E /* AFHTTPClient.m in Sources */,
