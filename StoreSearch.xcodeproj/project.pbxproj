@@ -56,6 +56,8 @@
 		1BEAA85618A3237C003F755E /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEAA84C18A3237C003F755E /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1BEAA85A18A358A3003F755E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEAA85818A358A3003F755E /* DetailViewController.m */; };
 		1BEAA85B18A358A3003F755E /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEAA85918A358A3003F755E /* DetailViewController.xib */; };
+		1BEAA85E18A36A5E003F755E /* UIImage+StackBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEAA85D18A36A5E003F755E /* UIImage+StackBlur.m */; };
+		1BEAA86318A36CE2003F755E /* black-alpha-75.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEAA86218A36CE2003F755E /* black-alpha-75.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +139,9 @@
 		1BEAA85718A358A3003F755E /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ViewControllers/DetailViewController.h; sourceTree = "<group>"; };
 		1BEAA85818A358A3003F755E /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ViewControllers/DetailViewController.m; sourceTree = "<group>"; };
 		1BEAA85918A358A3003F755E /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailViewController.xib; path = ViewControllers/DetailViewController.xib; sourceTree = "<group>"; };
+		1BEAA85C18A36A5E003F755E /* UIImage+StackBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+StackBlur.h"; sourceTree = "<group>"; };
+		1BEAA85D18A36A5E003F755E /* UIImage+StackBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+StackBlur.m"; sourceTree = "<group>"; };
+		1BEAA86218A36CE2003F755E /* black-alpha-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "black-alpha-75.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +173,7 @@
 		1B17E87E18A2DF6B00EA3716 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1BEAA86218A36CE2003F755E /* black-alpha-75.png */,
 				1B17E87F18A2DF6B00EA3716 /* BarTexture.png */,
 				1B17E88018A2DF6B00EA3716 /* BarTexture@2x.png */,
 				1B17E88118A2DF6B00EA3716 /* CloseButton.png */,
@@ -190,6 +196,7 @@
 		1BB34F0918A213850082F53A = {
 			isa = PBXGroup;
 			children = (
+				1BEAA85F18A36A65003F755E /* StackBlur */,
 				1BEAA83618A3237C003F755E /* AFNetworking */,
 				1B17E87E18A2DF6B00EA3716 /* Images */,
 				1BB34F1D18A213850082F53A /* StoreSearch */,
@@ -303,6 +310,15 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		1BEAA85F18A36A65003F755E /* StackBlur */ = {
+			isa = PBXGroup;
+			children = (
+				1BEAA85C18A36A5E003F755E /* UIImage+StackBlur.h */,
+				1BEAA85D18A36A5E003F755E /* UIImage+StackBlur.m */,
+			);
+			name = StackBlur;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -388,6 +404,7 @@
 				1B17E89818A2DF6B00EA3716 /* Placeholder@2x.png in Resources */,
 				1BEAA83318A2F8BF003F755E /* NothingFoundCell.xib in Resources */,
 				1BB34F4E18A213CC0082F53A /* SearchViewController.xib in Resources */,
+				1BEAA86318A36CE2003F755E /* black-alpha-75.png in Resources */,
 				1B17E89B18A2DF6B00EA3716 /* StoreButton@2x.png in Resources */,
 				1B17E89C18A2DF6B00EA3716 /* TableCellGradient.png in Resources */,
 				1BB34F2D18A213850082F53A /* Images.xcassets in Resources */,
@@ -427,6 +444,7 @@
 				1BB34F2818A213850082F53A /* AppDelegate.m in Sources */,
 				1BB34F2418A213850082F53A /* main.m in Sources */,
 				1BEAA84E18A3237C003F755E /* AFHTTPRequestOperation.m in Sources */,
+				1BEAA85E18A36A5E003F755E /* UIImage+StackBlur.m in Sources */,
 				1BEAA84F18A3237C003F755E /* AFImageCache.m in Sources */,
 				1BEAA85018A3237C003F755E /* AFImageRequestOperation.m in Sources */,
 				1BEAA85218A3237C003F755E /* AFNetworkActivityIndicatorManager.m in Sources */,
