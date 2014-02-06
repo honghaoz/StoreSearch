@@ -54,6 +54,8 @@
 		1BEAA85418A3237C003F755E /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEAA84818A3237C003F755E /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1BEAA85518A3237C003F755E /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEAA84A18A3237C003F755E /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-unused"; }; };
 		1BEAA85618A3237C003F755E /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEAA84C18A3237C003F755E /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1BEAA85A18A358A3003F755E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEAA85818A358A3003F755E /* DetailViewController.m */; };
+		1BEAA85B18A358A3003F755E /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEAA85918A358A3003F755E /* DetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +134,9 @@
 		1BEAA84A18A3237C003F755E /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		1BEAA84B18A3237C003F755E /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		1BEAA84C18A3237C003F755E /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		1BEAA85718A358A3003F755E /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ViewControllers/DetailViewController.h; sourceTree = "<group>"; };
+		1BEAA85818A358A3003F755E /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ViewControllers/DetailViewController.m; sourceTree = "<group>"; };
+		1BEAA85918A358A3003F755E /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailViewController.xib; path = ViewControllers/DetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +230,9 @@
 				1BB34F4A18A213CC0082F53A /* SearchViewController.h */,
 				1BB34F4B18A213CC0082F53A /* SearchViewController.m */,
 				1BB34F4C18A213CC0082F53A /* SearchViewController.xib */,
+				1BEAA85718A358A3003F755E /* DetailViewController.h */,
+				1BEAA85818A358A3003F755E /* DetailViewController.m */,
+				1BEAA85918A358A3003F755E /* DetailViewController.xib */,
 				1B17E89F18A2E8B200EA3716 /* SearchResultCell.h */,
 				1B17E8A018A2E8B200EA3716 /* SearchResultCell.m */,
 				1B17E89D18A2E0CC00EA3716 /* SearchResultCell.xib */,
@@ -385,6 +393,7 @@
 				1BB34F2D18A213850082F53A /* Images.xcassets in Resources */,
 				1B17E89518A2DF6B00EA3716 /* LandscapeButton.png in Resources */,
 				1BEAA83518A31A05003F755E /* LoadingCell.xib in Resources */,
+				1BEAA85B18A358A3003F755E /* DetailViewController.xib in Resources */,
 				1B17E89A18A2DF6B00EA3716 /* StoreButton.png in Resources */,
 				1B17E89318A2DF6B00EA3716 /* DetailPlaceholder@2x.png in Resources */,
 				1B17E89E18A2E0CC00EA3716 /* SearchResultCell.xib in Resources */,
@@ -411,6 +420,7 @@
 			files = (
 				1BEAA85418A3237C003F755E /* AFURLConnectionOperation.m in Sources */,
 				1BEAA85518A3237C003F755E /* AFXMLRequestOperation.m in Sources */,
+				1BEAA85A18A358A3003F755E /* DetailViewController.m in Sources */,
 				1BEAA85118A3237C003F755E /* AFJSONRequestOperation.m in Sources */,
 				1B17E8A118A2E8B200EA3716 /* SearchResultCell.m in Sources */,
 				1B17E87D18A2C25200EA3716 /* SearchResult.m in Sources */,
