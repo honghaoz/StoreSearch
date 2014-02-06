@@ -10,6 +10,7 @@
 #import "SearchResult.h"
 #import "SearchResultCell.h"
 #import "AFJSONRequestOperation.h"
+#import "AFImageCache.h"
 
 static NSString *const SearchResultCellIdentifier = @"SearchResultCell";
 static NSString *const NothingFoundCellIdentifier = @"NothingFoundCell";
@@ -19,6 +20,10 @@ static NSString *const LoadingCellIdentifier = @"LoadingCell";
 
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+@property (nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl;
+
+- (IBAction)segmentChanged:(UISegmentedControl *)sender;
 
 @end
 
@@ -156,31 +161,85 @@ static NSString *const LoadingCellIdentifier = @"LoadingCell";
     return searchResult;
 }
 
-- (NSString *)kindForDisplay:(NSString *)kind
-{
-    if ([kind isEqualToString:@"album"]) {
-        return @"Album";
-    } else if ([kind isEqualToString:@"audiobook"]) {
-        return @"Audio Book";
-    } else if ([kind isEqualToString:@"book"]) {
-        return @"Book";
-    } else if ([kind isEqualToString:@"ebook"]) {
-        return @"E-Book";
-    } else if ([kind isEqualToString:@"feature-movie"]) {
-        return @"Movie";
-    } else if ([kind isEqualToString:@"music-video"]) {
-        return @"Music Video";
-    } else if ([kind isEqualToString:@"podcast"]) {
-        return @"Podcast";
-    } else if ([kind isEqualToString:@"software"]) {
-        return @"App";
-    } else if ([kind isEqualToString:@"song"]) {
-        return @"Song";
-    } else if ([kind isEqualToString:@"tv-episode"]) {
-        return @"TV Episode";
-    } else {
-        return kind;
+- (void)performSearch {
+    if ([self.searchBar.text length] > 0) {
+        [self.searchBar resignFirstResponder];
+        
+        [queue cancelAllOperations];
+        [[AFImageCache sharedImageCache] removeAllObjects];
+        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        
+        isLoading = YES;
+        [self.tableView reloadData];
+        
+        searchResults = [NSMutableArray arrayWithCapacity:10];
+        
+        NSURL *url = [self urlWithSearchText:self.searchBar.text category:self.segmentedControl.selectedSegmentIndex];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        
+        AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+            NSLog(@"Success!");
+            [self parseDictionary:JSON];
+            [searchResults sortUsingSelector:@selector(compareName:)];
+            
+            isLoading = NO;
+            [self.tableView reloadData];
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+            NSLog(@"Failure! %@", error);
+            [self showNetworkError];
+            isLoading = NO;
+            [self.tableView reloadData];
+        }];
+        
+        operation.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json",@"text/javascript", nil];
+        [queue addOperation:operation];
+        //
+        //        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        //        dispatch_async(queue, ^{
+        //
+        //
+        //            NSString *jsonString = [self performStoreRequestWithURL:url];
+        //            if (jsonString == nil) {
+        //                NSLog(@"Error!");
+        //                dispatch_async(dispatch_get_main_queue(), ^{
+        //                    [self showNetworkError];
+        //                });
+        //                return;
+        //            }
+        //
+        //            NSDictionary *dictionary = [self parseJSON:jsonString];
+        //            if (dictionary == nil) {
+        //                NSLog(@"Error!");
+        //                dispatch_async(dispatch_get_main_queue(), ^{
+        //                    [self showNetworkError];
+        //                });
+        //                return;
+        //            }
+        //            [self parseDictionary:dictionary];
+        //            [searchResults sortUsingSelector:@selector(compareName:)];
+        //            NSLog(@"Done!");
+        //            dispatch_async(dispatch_get_main_queue(), ^{
+        //                isLoading = NO;
+        //                [self.tableView reloadData];
+        //            });
+        //        });
     }
+    
+}
+
+- (NSURL *)urlWithSearchText:(NSString *)searchText category:(NSInteger)category {
+    NSString *categoryName;
+    switch (category) {
+        case 0: categoryName = @""; break;
+        case 1: categoryName = @"musicTrack"; break;
+        case 2: categoryName = @"software"; break;
+        case 3: categoryName = @"ebook"; break;
+    }
+    
+    NSString *escapedSearchText = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&limit=200&entity=%@", escapedSearchText, categoryName];
+    NSURL *url = [NSURL URLWithString:urlString];
+    return url;
 }
 
 #pragma mark - UITableViewDataSource
@@ -205,15 +264,7 @@ static NSString *const LoadingCellIdentifier = @"LoadingCell";
     } else {
         SearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:SearchResultCellIdentifier];
         SearchResult *searchResult = [searchResults objectAtIndex:indexPath.row];
-        cell.nameLabel.text = searchResult.name;
-        
-        NSString *artistName = searchResult.artistName;
-        if (artistName == nil) {
-            artistName = @"Unknown";
-        }
-        
-        NSString *kind = [self kindForDisplay:searchResult.kind];
-        cell.artistNameLabel.text = [NSString stringWithFormat:@"%@ (%@)", artistName, kind];
+        [cell configureForSearchResult:searchResult];
         return cell;
     }
 }
@@ -235,74 +286,14 @@ static NSString *const LoadingCellIdentifier = @"LoadingCell";
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    if ([searchBar.text length] > 0) {
-        [searchBar resignFirstResponder];
-        
-        [queue cancelAllOperations];
-        
-        isLoading = YES;
-        [self.tableView reloadData];
-
-        searchResults = [NSMutableArray arrayWithCapacity:10];
-        
-        NSURL *url = [self urlWithSearchText:searchBar.text];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        
-        AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-            NSLog(@"Success!");
-            [self parseDictionary:JSON];
-            [searchResults sortUsingSelector:@selector(compareName:)];
-            
-            isLoading = NO;
-            [self.tableView reloadData];
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-            NSLog(@"Failure! %@", error);
-            [self showNetworkError];
-            isLoading = NO;
-            [self.tableView reloadData];
-        }];
-        
-        operation.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json",@"text/javascript", nil];
-        [queue addOperation:operation];
-//
-//        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//        dispatch_async(queue, ^{
-//        
-//            
-//            NSString *jsonString = [self performStoreRequestWithURL:url];
-//            if (jsonString == nil) {
-//                NSLog(@"Error!");
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self showNetworkError];
-//                });
-//                return;
-//            }
-//        
-//            NSDictionary *dictionary = [self parseJSON:jsonString];
-//            if (dictionary == nil) {
-//                NSLog(@"Error!");
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self showNetworkError];
-//                });
-//                return;
-//            }
-//            [self parseDictionary:dictionary];
-//            [searchResults sortUsingSelector:@selector(compareName:)];
-//            NSLog(@"Done!");
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                isLoading = NO;
-//                [self.tableView reloadData];
-//            });
-//        });
-    }
-    
+    [self performSearch];
 }
 
-- (NSURL *)urlWithSearchText:(NSString *)searchText {
-    NSString *escapedSearchText = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@", escapedSearchText];
-    NSURL *url = [NSURL URLWithString:urlString];
-    return url;
+#pragma mark - SegmentController 
+- (IBAction)segmentChanged:(UISegmentedControl *)sender{
+    if (searchResults != nil) {
+        [self performSearch];
+    }
 }
 
 @end

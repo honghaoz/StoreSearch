@@ -22,4 +22,5 @@
 
 - (NSComparisonResult)compareName:(SearchResult *)other;
 
+
 @end
