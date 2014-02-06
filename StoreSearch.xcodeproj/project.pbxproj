@@ -43,6 +43,7 @@
 		1BB34F4D18A213CC0082F53A /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB34F4B18A213CC0082F53A /* SearchViewController.m */; };
 		1BB34F4E18A213CC0082F53A /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB34F4C18A213CC0082F53A /* SearchViewController.xib */; };
 		1BEAA83318A2F8BF003F755E /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEAA83218A2F8BF003F755E /* NothingFoundCell.xib */; };
+		1BEAA83518A31A05003F755E /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEAA83418A31A05003F755E /* LoadingCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		1BB34F4B18A213CC0082F53A /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = ViewControllers/SearchViewController.m; sourceTree = "<group>"; };
 		1BB34F4C18A213CC0082F53A /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchViewController.xib; path = ViewControllers/SearchViewController.xib; sourceTree = "<group>"; };
 		1BEAA83218A2F8BF003F755E /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
+		1BEAA83418A31A05003F755E /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 				1B17E8A018A2E8B200EA3716 /* SearchResultCell.m */,
 				1B17E89D18A2E0CC00EA3716 /* SearchResultCell.xib */,
 				1BEAA83218A2F8BF003F755E /* NothingFoundCell.xib */,
+				1BEAA83418A31A05003F755E /* LoadingCell.xib */,
 				1BB34F2C18A213850082F53A /* Images.xcassets */,
 				1BB34F2918A213850082F53A /* StoreSearch.xcdatamodeld */,
 				1BB34F1E18A213850082F53A /* Supporting Files */,
@@ -319,6 +322,7 @@
 				1B17E89C18A2DF6B00EA3716 /* TableCellGradient.png in Resources */,
 				1BB34F2D18A213850082F53A /* Images.xcassets in Resources */,
 				1B17E89518A2DF6B00EA3716 /* LandscapeButton.png in Resources */,
+				1BEAA83518A31A05003F755E /* LoadingCell.xib in Resources */,
 				1B17E89A18A2DF6B00EA3716 /* StoreButton.png in Resources */,
 				1B17E89318A2DF6B00EA3716 /* DetailPlaceholder@2x.png in Resources */,
 				1B17E89E18A2E0CC00EA3716 /* SearchResultCell.xib in Resources */,
