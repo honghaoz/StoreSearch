@@ -27,6 +27,8 @@
 		1B17E8A118A2E8B200EA3716 /* SearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B17E8A018A2E8B200EA3716 /* SearchResultCell.m */; };
 		1B8695CE18A4147600073D52 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8695CD18A4147600073D52 /* GradientView.m */; };
 		1B8695D018A41B4C00073D52 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B8695CF18A41B4C00073D52 /* QuartzCore.framework */; };
+		1B904BD418A49857007795E3 /* LandscapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B904BD218A49857007795E3 /* LandscapeViewController.m */; };
+		1B904BD518A49857007795E3 /* LandscapeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B904BD318A49857007795E3 /* LandscapeViewController.xib */; };
 		1BB34F1618A213850082F53A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB34F1518A213850082F53A /* Foundation.framework */; };
 		1BB34F1818A213850082F53A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB34F1718A213850082F53A /* CoreGraphics.framework */; };
 		1BB34F1A18A213850082F53A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB34F1918A213850082F53A /* UIKit.framework */; };
@@ -96,6 +98,9 @@
 		1B8695CC18A4147600073D52 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		1B8695CD18A4147600073D52 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		1B8695CF18A41B4C00073D52 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1B904BD118A49857007795E3 /* LandscapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LandscapeViewController.h; path = ViewControllers/LandscapeViewController.h; sourceTree = "<group>"; };
+		1B904BD218A49857007795E3 /* LandscapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LandscapeViewController.m; path = ViewControllers/LandscapeViewController.m; sourceTree = "<group>"; };
+		1B904BD318A49857007795E3 /* LandscapeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LandscapeViewController.xib; path = ViewControllers/LandscapeViewController.xib; sourceTree = "<group>"; };
 		1BB34F1218A213850082F53A /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BB34F1518A213850082F53A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1BB34F1718A213850082F53A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -247,6 +252,9 @@
 				1BEAA85718A358A3003F755E /* DetailViewController.h */,
 				1BEAA85818A358A3003F755E /* DetailViewController.m */,
 				1BEAA85918A358A3003F755E /* DetailViewController.xib */,
+				1B904BD118A49857007795E3 /* LandscapeViewController.h */,
+				1B904BD218A49857007795E3 /* LandscapeViewController.m */,
+				1B904BD318A49857007795E3 /* LandscapeViewController.xib */,
 				1B8695CC18A4147600073D52 /* GradientView.h */,
 				1B8695CD18A4147600073D52 /* GradientView.m */,
 				1B17E89F18A2E8B200EA3716 /* SearchResultCell.h */,
@@ -425,6 +433,7 @@
 				1B17E89E18A2E0CC00EA3716 /* SearchResultCell.xib in Resources */,
 				1B17E89118A2DF6B00EA3716 /* CloseButton@2x.png in Resources */,
 				1B17E89218A2DF6B00EA3716 /* DetailPlaceholder.png in Resources */,
+				1B904BD518A49857007795E3 /* LandscapeViewController.xib in Resources */,
 				1B17E88E18A2DF6B00EA3716 /* BarTexture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,6 +463,7 @@
 				1BB34F2418A213850082F53A /* main.m in Sources */,
 				1BEAA84E18A3237C003F755E /* AFHTTPRequestOperation.m in Sources */,
 				1BEAA85E18A36A5E003F755E /* UIImage+StackBlur.m in Sources */,
+				1B904BD418A49857007795E3 /* LandscapeViewController.m in Sources */,
 				1BEAA84F18A3237C003F755E /* AFImageCache.m in Sources */,
 				1BEAA85018A3237C003F755E /* AFImageRequestOperation.m in Sources */,
 				1BEAA85218A3237C003F755E /* AFNetworkActivityIndicatorManager.m in Sources */,
