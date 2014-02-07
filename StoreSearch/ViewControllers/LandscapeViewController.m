@@ -9,6 +9,7 @@
 #import "LandscapeViewController.h"
 #import "SearchResult.h"
 #import "AFImageCache.h"
+#import "DetailViewController.h"
 
 @interface LandscapeViewController ()
 
@@ -80,6 +81,9 @@
         [self.scrollView addSubview:button];
 		[self downloadImageForSearchResult:searchResult andPlaceOnButton:button];
         
+        button.tag = 2000 + index;
+        [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
         index++;
         row++;
         if (row == 3) {
@@ -95,6 +99,13 @@
     
     self.pageControl.numberOfPages = numPages;
     self.pageControl.currentPage = 0;
+}
+
+- (void)buttonPressed:(UIButton *)sender {
+    DetailViewController *controller = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
+    SearchResult *searchResult = [self.searchResults objectAtIndex:sender.tag - 2000];
+    controller.searchResult = searchResult;
+    [controller presentInParentViewController:self];
 }
 
 - (void)viewDidLoad

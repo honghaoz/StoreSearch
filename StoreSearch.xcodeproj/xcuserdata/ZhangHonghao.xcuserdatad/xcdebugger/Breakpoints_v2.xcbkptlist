@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StoreSearch/ViewControllers/LandscapeViewController.m"
-            timestampString = "413495835.418313"
+            timestampString = "413496443.327412"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "@implementation LandscapeViewController"
             landmarkType = "3">
          </BreakpointContent>
