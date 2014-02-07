@@ -8,6 +8,7 @@
 
 #import "LandscapeViewController.h"
 #import "SearchResult.h"
+#import "AFImageCache.h"
 
 @interface LandscapeViewController ()
 
@@ -18,7 +19,9 @@
 
 @end
 
-@implementation LandscapeViewController
+@implementation LandscapeViewController {
+    NSOperationQueue *imageRequestOperationQueue;
+}
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -28,8 +31,32 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        imageRequestOperationQueue = [[NSOperationQueue alloc] init];
+        [imageRequestOperationQueue setMaxConcurrentOperationCount:8];
     }
     return self;
+}
+
+- (void)downloadImageForSearchResult:(SearchResult *)searchResult andPlaceOnButton:(UIButton *)button
+{
+    NSURL *url = [NSURL URLWithString:searchResult.artworkURL100];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+    [urlRequest setHTTPShouldHandleCookies:NO];
+    [urlRequest setHTTPShouldUsePipelining:YES];
+    
+    UIImage *cachedImage = [[AFImageCache sharedImageCache] cachedImageForURL:[urlRequest URL] cacheName:nil];
+    if (cachedImage != nil) {
+        [button setImage:cachedImage forState:UIControlStateNormal];
+    } else {
+        
+        AFImageRequestOperation *requestOperation = [[AFImageRequestOperation alloc] initWithRequest:urlRequest];
+        [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [button setImage:responseObject forState:UIControlStateNormal];
+            [[AFImageCache sharedImageCache] cacheImageData:operation.responseData forURL:[urlRequest URL] cacheName:nil];
+        } failure:nil];
+        
+        [imageRequestOperationQueue addOperation:requestOperation];
+    }
 }
 
 - (void)tileButtons
@@ -51,7 +78,7 @@
         button.frame = CGRectMake(column*itemWidth + marginHorz, row*itemHeight + marginVert, buttonWidth, buttonHeight);
         [button setBackgroundImage:[UIImage imageNamed:@"LandscapeButton"] forState:UIControlStateNormal];
         [self.scrollView addSubview:button];
-		//[self downloadImageForSearchResult:searchResult andPlaceOnButton:button];
+		[self downloadImageForSearchResult:searchResult andPlaceOnButton:button];
         
         index++;
         row++;
@@ -102,6 +129,11 @@
                          self.scrollView.contentOffset = CGPointMake(self.scrollView.bounds.size.width * sender.currentPage, 0);
                      }
                      completion:nil];
+}
+
+- (void)dealloc {
+    NSLog(@"dealloc %@". self);
+    [imageRequestOperationQueue cancelAllOperations];
 }
 
 @end
