@@ -16,6 +16,7 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor clearColor];
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return self;
 }

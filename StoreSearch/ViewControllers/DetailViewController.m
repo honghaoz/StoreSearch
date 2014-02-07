@@ -10,6 +10,7 @@
 #import "SearchResult.h"
 #import "UIImage+StackBlur.h"
 #import "UIImageView+AFNetworking.h"
+#import "GradientView.h"
 
 @interface DetailViewController ()
 
@@ -21,6 +22,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *priceLabel;
 @property (nonatomic, weak) IBOutlet UIButton *storeButton;
 
+@property (nonatomic, weak) IBOutlet UIButton *closeButton;
+
 @property (nonatomic, weak) IBOutlet UIView *backgroundView;
 @property (nonatomic, weak) IBOutlet UIImageView *blurBackground;
 
@@ -29,7 +32,9 @@
 
 @end
 
-@implementation DetailViewController
+@implementation DetailViewController {
+    GradientView *gradientView;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,6 +82,23 @@
     
 }
 
+//-(BOOL)shouldAutorotate{
+//    return YES;
+//}
+//
+//-(NSInteger)supportedInterfaceOrientations{
+//    NSInteger orientationMask = 0;
+//    if ([self shouldAutorotateToInterfaceOrientation: UIInterfaceOrientationLandscapeLeft])
+//        orientationMask |= UIInterfaceOrientationMaskLandscapeLeft;
+//    if ([self shouldAutorotateToInterfaceOrientation: UIInterfaceOrientationLandscapeRight])
+//        orientationMask |= UIInterfaceOrientationMaskLandscapeRight;
+//    if ([self shouldAutorotateToInterfaceOrientation: UIInterfaceOrientationPortrait])
+//        orientationMask |= UIInterfaceOrientationMaskPortrait;
+//    if ([self shouldAutorotateToInterfaceOrientation: UIInterfaceOrientationPortraitUpsideDown])
+//        orientationMask |= UIInterfaceOrientationMaskPortraitUpsideDown;
+//    return orientationMask;
+//}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -84,11 +106,78 @@
 }
 
 - (IBAction)close:(id)sender {
+    [self dismissFromParentViewController];
+}
+
+- (void)dismissFromParentViewController {
     [self willMoveToParentViewController:nil];
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
     
+    [UIView animateWithDuration:0.4 animations:^
+     {
+         CGRect rect = self.view.bounds;
+         rect.origin.y += rect.size.height;
+         self.view.frame = rect;
+         gradientView.alpha = 0.0f;
+     }
+                     completion:^(BOOL finished)
+     {
+         [self.view removeFromSuperview];
+         [gradientView removeFromSuperview];
+         [self removeFromParentViewController];
+     }];
+}
+
+- (void)presentInParentViewController:(UIViewController *)parentViewController{
+    gradientView = [[GradientView alloc] initWithFrame:parentViewController.view.bounds];
+    [parentViewController.view addSubview:gradientView];
     
+    self.view.frame = parentViewController.view.bounds;
+    [self layoutForInterfaceOritation:parentViewController.interfaceOrientation];
+    [parentViewController.view addSubview:self.view];
+    [parentViewController addChildViewController:self];
+    
+    CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+    
+    bounceAnimation.duration = 0.4;
+    bounceAnimation.delegate = self;
+    
+//    bounceAnimation.values = [NSArray arrayWithObjects:
+//                              [NSNumber numberWithFloat:0.7f],
+//                              [NSNumber numberWithFloat:1.2f],
+//                              [NSNumber numberWithFloat:0.9f],
+//                              [NSNumber numberWithFloat:1.0f],
+//                              nil];
+    bounceAnimation.values = @[@0.7f, @1.2f, @0.9f, @1.0f];
+    
+    bounceAnimation.keyTimes = [NSArray arrayWithObjects:
+                                [NSNumber numberWithFloat:0.0f],
+                                [NSNumber numberWithFloat:0.334f],
+                                [NSNumber numberWithFloat:0.666f],
+                                [NSNumber numberWithFloat:1.0f],
+                                nil];
+    
+    bounceAnimation.timingFunctions = [NSArray arrayWithObjects:
+                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                       nil];
+    
+    [self.view.layer addAnimation:bounceAnimation forKey:@"bounceAnimation"];
+    
+    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    fadeAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
+    fadeAnimation.toValue = [NSNumber numberWithFloat:1.0f];
+    fadeAnimation.duration = 0.1;
+    [gradientView.layer addAnimation:fadeAnimation forKey:@"fadeAnimation"];
+    
+//
+//    
+//    [self didMoveToParentViewController:parentViewController];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [self didMoveToParentViewController:self.parentViewController];
 }
 
 - (void)dealloc {
@@ -98,5 +187,20 @@
 
 - (IBAction)openInStore:(id)sender {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.searchResult.storeURL]];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self layoutForInterfaceOritation:toInterfaceOrientation];
+}
+
+- (void)layoutForInterfaceOritation:(UIInterfaceOrientation)interfaceOrientation {
+    CGRect rect = self.closeButton.frame;
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+        rect.origin = CGPointMake(28, 60);
+    } else {
+        rect.origin = CGPointMake(108, 7);
+    }
+    self.closeButton.frame = rect;
 }
 @end
