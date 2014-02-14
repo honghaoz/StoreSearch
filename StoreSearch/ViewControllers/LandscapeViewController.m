@@ -143,7 +143,6 @@
 }
 
 - (void)dealloc {
-    NSLog(@"dealloc %@". self);
     [imageRequestOperationQueue cancelAllOperations];
 }
 
